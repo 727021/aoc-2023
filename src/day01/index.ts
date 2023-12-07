@@ -7,8 +7,8 @@ const part1 = (rawInput: string) => {
 
   return input.reduce((acc, cur) => {
     const arr = cur.split('')
-    const firstNum = arr.find(c => /\d/.test(c))
-    const lastNum = arr.reverse().find(c => /\d/.test(c))
+    const firstNum = arr.find((c) => /\d/.test(c))
+    const lastNum = arr.reverse().find((c) => /\d/.test(c))
     const num = +`${firstNum}${lastNum}`
     return acc + num
   }, 0)
@@ -35,13 +35,15 @@ const part2 = (rawInput: string) => {
   return input.reduce((acc, cur) => {
     let m: RegExpExecArray | null
     const matches = []
-    while (m = exp.exec(cur)) {
+    while ((m = exp.exec(cur))) {
       matches.push(m[0])
       exp.lastIndex = m.index + 1
     }
     const firstNum = matches[0]
     const lastNum = matches.at(-1)
-    const num = +`${numbers[firstNum as keyof typeof numbers] ?? firstNum}${numbers[lastNum as keyof typeof numbers] ?? lastNum}`
+    const num = +`${numbers[firstNum as keyof typeof numbers] ?? firstNum}${
+      numbers[lastNum as keyof typeof numbers] ?? lastNum
+    }`
     return acc + num
   }, 0)
 }
@@ -67,8 +69,8 @@ run({
         4nineeightseven2
         zoneight234
         7pqrstsixteen`,
-        expected: 281,
-      },
+        expected: 281
+      }
     ],
     solution: part2
   },
